@@ -1,3 +1,4 @@
+
 //***************************************
 //  kinwin.js
 //  An independent micro DOM manipulation framework
@@ -6,15 +7,11 @@
 'use strict';
 
 (function () {
-  function KinWin (a) {
-    var e = 'getElement',
-    n = 'Name',
-    i = {'#':'ID'. '.':'Class' + n, '@': 'By' + n, '=': 'Tag' + n}[s[0]] || false,
-    b = s.slice(1),
-    u = (i ? document[e + n](b) : document.querySelectorAll(b));
-
-    this.element = (this.kindaSortaTypa(u, "NodeList")) ? Array.prototype.slice.call(u) : u;
-  }
+    function KinWin(s) {
+        var z = 'getElement', g = 'Name', a = {'#': 'ById', '.': 'sByClass' + g, '@': 'sBy' + g, '=': 'sByTag' + g}[s[0]] || false,
+            b = s.slice(1), u = (a ? document[z + a](b) : document.querySelectorAll(b));
+        this.element = (this.checkIf(u, 'NodeList')) ? Array.prototype.slice.call(u) : u;
+    }
 
   KinWin.prototype = {
 
@@ -27,6 +24,16 @@
     get : function () {
       // Get element
       return this.element;
+    },
+
+    set: function (element, name, value) {
+      if (this.KindaSortaTypa(name, "String")) {
+        element.setAttribute(name, value);
+      } else if (this.KindaSortaTypa(name, "Object")) {
+        for (var property in name) {
+          element.setAttribute(property, name[property]);
+        }
+      }
     },
 
     parent: function () {
