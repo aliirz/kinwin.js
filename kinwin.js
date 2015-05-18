@@ -13,32 +13,33 @@
         this.element = (this.checkIf(u, 'NodeList')) ? Array.prototype.slice.call(u) : u;
     }
 
-  KinWin.prototype = {
+    KinWin.prototype = {
 
-    constructor: KinWin,
+        constructor: KinWin,
 
-    KindaSortaTypa: function (obj, type) {
-      return Object.prototype.toString.call(obj) === '[object ' + type + ']';
-    },
+        KindaSortaTypa: function (obj, type) {
+            return Object.prototype.toString.call(obj) === '[object ' + type + ']';
+        },
 
-    get : function () {
-      // Get element
-      return this.element;
-    },
+        get : function () {
+          // Get element
+            return this.element;
+        },
 
-    set: function (element, name, value) {
-      if (this.KindaSortaTypa(name, "String")) {
-        element.setAttribute(name, value);
-      } else if (this.KindaSortaTypa(name, "Object")) {
-        for (var property in name) {
-          element.setAttribute(property, name[property]);
-        }
-      }
-    },
+        set: function (element, name, value) {
+            if (this.KindaSortaTypa(name, 'String')) {
+                element.setAttribute(name, value);
+            }
+            else if (this.KindaSortaTypa(name, 'Object')) {
+                for (var property in name) {
+                    element.setAttribute(property, name[property]);
+                }
+            }
+        },
 
-    parent: function () {
-      return (!this.KindaSortaTypa(this.element, "Array")) ? this.element.parentNode : null;
-    },
+        parent: function () {
+            return (!this.KindaSortaTypa(this.element, 'Array')) ? this.element.parentNode : null;
+        },
 
     hide: function () {
       this.each(function (element) {
