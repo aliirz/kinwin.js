@@ -1,17 +1,34 @@
 <!doctype html lang="en">
 <html>
-	<head>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>KinWin dot JS</title>
-		<description>A minimalist javascript framework for DOM manipulation.</description>
-	</head>
-	<body>
-		<h1>Test Me</h1>
-
-		<a href="#">Test</a>
-
-		
-		 <script type="text/javascript" src="kinwin.js"></script>
-		 <script type="text/javascript" src="demo.js"></script>
-	</body>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>KinWin dot JS</title>
+	
+	<link href="bijou.min.css" rel="stylesheet"/>
+	<style>
+	body {
+		margin-top: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div class='navbar fixed'>
+		<div class='container'>
+			<h4 class='pull-left'>KinWin</h4>
+			<ul class='pull-right'>
+				<li><a href='#'>Github</a></li>
+				<li><a href='#'>Download</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="banner row">
+			<h1 class="testHeading center">Test Me</h1>
+			<p>A minimalist javascript framework for DOM manipulation.</p>
+			<a id="testLink" onclick="testFunction()" href="#">Test</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="kinwin.js"></script>
+	<script type="text/javascript" src="demo.js"></script>
+</body>
 </html>
