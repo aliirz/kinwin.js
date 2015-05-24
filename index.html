@@ -4,10 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>KinWin dot JS</title>
 	
-	<link href="bijou.min.css" rel="stylesheet"/>
+	<link href="css/bijou.min.css" rel="stylesheet"/>
 	<style>
 	body {
 		margin-top: 100px;
+	}
+	.banner {
+		text-align: center;
+	}
+	.owl {
+		max-width:100% !important;
+		height:auto;
+		display:block;
 	}
 	</style>
 </head>
@@ -16,19 +24,25 @@
 		<div class='container'>
 			<h4 class='pull-left'>KinWin</h4>
 			<ul class='pull-right'>
-				<li><a href='#'>Github</a></li>
-				<li><a href='#'>Download</a></li>
+				<li><a href='https://github.com/andhart/bijou'>Github</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="container">
 		<div class="banner row">
-			<h1 class="testHeading center">Test Me</h1>
-			<p>A minimalist javascript framework for DOM manipulation.</p>
-			<a id="testLink" onclick="testFunction()" href="#">Test</a>
+			<h2 class="nameHeading center">KinWin.js</h2>
+			<p>A minimalist javascript DOM manipulation framework</p>
+		</div>
+		<div id="dlDiv" class="banner row">
+			<br />
+			<a href="https://github.com/andhart/bijou" class="button large success">Get it Now</a>
+		</div>
+		<div id="owlDiv" class="banner row">
+			<img class="owl" src="images/Owl 3.png" alt="owwwl"/>
+			<a id="hideBtn" class="button small primary" onclick="showDownloadLink()" href="#">Get it!</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="kinwin.js"></script>
-	<script type="text/javascript" src="demo.js"></script>
+	<script type="text/javascript" src="dist/kinwin.js"></script>
+	<script type="text/javascript" src="js/demo.js"></script>
 </body>
 </html>

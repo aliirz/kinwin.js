@@ -1,6 +1,11 @@
 'use strict';
 
 
-function testFunction() {
-	kw('.testHeading').hide();
+window.onload = function hideOwl() {
+	kw('.owlDiv').hide();
+}
+
+function showDownloadLink() {
+	kw('.owlDiv').hide();
+	kw('.dlDiv').show();
 }
