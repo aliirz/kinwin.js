@@ -27,6 +27,9 @@
             });
             return this;
         },
+        get: function () {
+            return this.element;
+        },
         set: function (element, name, value) {
             if (this.kindaSortaTypa(name, 'String')) {
                 element.setAttribute(name, value);
@@ -104,9 +107,6 @@
         },
         parent: function () {
             return (!this.kindaSortaTypa(this.element, 'Array')) ? this.element.parentNode : null;
-        },
-        get: function () {
-            return this.element;
         },
         each: function (fun) {
             if (!Array.prototype.forEach) {
