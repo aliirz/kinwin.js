@@ -1,5 +1,5 @@
 #KinWin
-##A minimalist DOM manipulation framework.
+##A minimalist DOM manipulation library.
 
 ###Usage
 
