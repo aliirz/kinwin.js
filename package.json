@@ -1,0 +1,27 @@
+{
+  "name": "kinwin.js",
+  "version": "0.0.1",
+  "description": "A minimalist DOM manipulation library",
+  "dependencies": {
+    "gulp": "~3.8.11"
+  },
+  "devDependencies": {
+    "gulp-uglify": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliirz/kinwin.js.git"
+  },
+  "keywords": [
+    "kinwin",
+    "jquery",
+    "dom",
+    "vanilla"
+  ],
+  "author": "Ali Raza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliirz/kinwin.js/issues"
+  },
+  "homepage": "https://github.com/aliirz/kinwin.js"
+}
