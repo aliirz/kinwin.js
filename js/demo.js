@@ -1,6 +1,5 @@
 'use strict';
 
-
-function testFunction() {
-	kw('.testHeading').hide();
+function showDownloadLink () {
+	kw('.owlDiv').hide();
 }
