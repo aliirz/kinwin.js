@@ -31,5 +31,7 @@ All methods can be accessed using the `kw` operator like this:
 + tag: `kw.('=tagname')`
 
 ###test.html
-Includes tiny assert() method patched on to the `kw` constructor.
-[test.html](./test/suite.html)
+
+Includes tiny `assert()` method patched on to the `kw` constructor.
+
+[test.html](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html)
