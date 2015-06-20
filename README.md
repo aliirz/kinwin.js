@@ -32,4 +32,4 @@ All methods can be accessed using the `kw` operator like this:
 
 ###test.html
 Includes tiny assert() method patched on to the `kw` constructor.
-[test.html](./test.html)
+[test.html](./test/suite.html)
