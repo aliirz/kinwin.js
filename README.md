@@ -23,4 +23,13 @@ All methods can be accessed using the `kw` operator like this:
 8. prepend
 9. remove
 
+###selectors
 
++ id: `kw.('#id-attribute')`
++ class: `kw.('.class-attribute')`
++ name: `kw.('@name-attribute')`
++ tag: `kw.('=tagname')`
+
+###test.html
+Includes tiny assert() method patched on to the `kw` constructor.
+[test.html](./test.html)
