@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<title>kinwin test suite</title>
+
+<div id="fixture-id" class="fixture-class" name='fixture-name' data-fixture='true' fixture>
+fixture
+</div>
+
+<script src='../src/kinwin.js'></script>
+<script test>
+(void function () {
+  
+    // monkey patch with assert
+  var k = kw('null');
+  
+  k.constructor.prototype.assert = function (msg, fn) {
+    var ok = this.element;
+    (ok) && (typeof ok == 'object' && 'length' in ok && (ok = ok.length));
+    !!ok || (typeof fn == 'function' || (fn = console.log)) && fn('fail: ' + msg);
+    return this;
+  };
+  
+    // assert assert
+  k.element = true;
+  k.assert('kw');
+  
+    // errors
+  function error(msg) {
+    document.getElementById('fixture-id').innerHTML += '<br>' + msg;
+  };
+  
+    // assert error to console.log
+  kw('#bad-id').assert('console-bad-id');
+  kw('.bad-class').assert('console-bad-class');
+  kw('@bad-name').assert('console-bad-name');
+  kw('=baddiv').assert('console-bad-div tag');
+  
+    // assert error to fn
+  kw('#bad-id').assert('error-bad-id', error);
+  kw('.bad-class').assert('error-bad-class', error);
+  kw('@bad-name').assert('error-bad-name', error);
+  kw('=baddiv').assert('error-baddiv tag', error);
+  
+    // assert passing selectors
+  kw('#fixture-id').assert('id', error);
+  kw('.fixture-class').assert('class', error);
+  kw('@fixture-name').assert('name', error);
+  kw('=div').assert('tag', error);
+
+}());
+</script>
