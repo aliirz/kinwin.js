@@ -33,12 +33,12 @@ name attribute and tagName syntax requires special first characters:
 + name: `kw.('@name-attribute')` returns nodes with matching name attribute value
 + tag: `kw.('=tagname')` returns nodes with matching nodeName or tagName
 
-###test suite
+###Test suite
 "no frills" <a href="https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html" 
-  target="_blank" title="opens new tab">html test suite</a> 
+  target="_blank" title="opens new tab">__html test suite__</a> 
 includes tiny `assert()` method patched on to the `kw` constructor.
 
-####maybe someday@hellip;
+####Maybe someday&hellip;
 + attribute selectors? ( i.e., `kw('[attribute...]')')` ~ 7 flavors of attribute selector )
 + contextual selectors? ( i.e., `kw('thing').select('descendant-of-things')` )
 + pseudo-element &amp; pseudo-class
