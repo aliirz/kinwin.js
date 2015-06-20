@@ -30,6 +30,13 @@ All methods can be accessed using the `kw` operator like this:
 + name: `kw.('@name-attribute')`
 + tag: `kw.('=tagname')`
 
+####todo
++ attribute selectors
++ contextual selectors
++ xpath
++ textContent (or nodeValue) selectors
++ pseudo-element &amp; pseudo-class
+
 ###test.html
 
 Includes tiny `assert()` method patched on to the `kw` constructor.
