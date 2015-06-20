@@ -30,17 +30,16 @@ All methods can be accessed using the `kw` operator like this:
 + name: `kw.('@name-attribute')`
 + tag: `kw.('=tagname')`
 
-####todo
-+ attribute selectors
-+ contextual selectors
-+ xpath
-+ textContent (or nodeValue) selectors
-+ pseudo-element &amp; pseudo-class
-
 ###test.html
 
 Includes tiny `assert()` method patched on to the `kw` constructor.
 
 [test.html](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html)
+
+####maybe later@hellip;
++ attribute selectors? ( i.e., `kw('[attribute...]')')` ~ 7 flavors of attribute selector )
++ contextual selectors? ( i.e., `kw('thing').select('descendant-of-things')` )
++ pseudo-element &amp; pseudo-class
++ xpath or textContent or nodeValue selectors ( extra credit )
 
 
