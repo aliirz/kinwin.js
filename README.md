@@ -23,23 +23,23 @@ All methods can be accessed using the `kw` operator like this:
 8. prepend
 9. remove
 
-###selectors
+###Selectors
 
-+ id: `kw.('#id-attribute')`
-+ class: `kw.('.class-attribute')`
-+ name: `kw.('@name-attribute')`
-+ tag: `kw.('=tagname')`
+id and class syntax same as DOM API:
++ id: `kw.('#id-attribute')` returns node with matching id attribute value
++ class: `kw.('.class-attribute')` returns nodes with matching class attribute value
 
-###test.html
+name attribute and tagName syntax requires special first characters:
++ name: `kw.('@name-attribute')` returns nodes with matching name attribute value
++ tag: `kw.('=tagname')` returns nodes with matching nodeName or tagName
 
-Includes tiny `assert()` method patched on to the `kw` constructor.
+###test suite
 
-[test.html](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html)
+See a "no frills" [html test suite](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html target='new') 
+~ includes tiny `assert()` method patched on to the `kw` constructor.
 
-####maybe later@hellip;
+####maybe someday@hellip;
 + attribute selectors? ( i.e., `kw('[attribute...]')')` ~ 7 flavors of attribute selector )
 + contextual selectors? ( i.e., `kw('thing').select('descendant-of-things')` )
 + pseudo-element &amp; pseudo-class
 + xpath or textContent or nodeValue selectors ( extra credit )
-
-
