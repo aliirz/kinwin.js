@@ -34,6 +34,6 @@ All methods can be accessed using the `kw` operator like this:
 
 Includes tiny `assert()` method patched on to the `kw` constructor.
 
-[test.html](https://rawgit.com/../../../master/test/suite.html)
+[test.html](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html)
 
 
