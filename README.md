@@ -34,9 +34,8 @@ name attribute and tagName syntax requires special first characters:
 + tag: `kw.('=tagname')` returns nodes with matching nodeName or tagName
 
 ###test suite
-
-See a "no frills" [html test suite](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html target='new') 
-~ includes tiny `assert()` method patched on to the `kw` constructor.
+"no frills" [html test suite](https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html){:target="_blank"}
+includes tiny `assert()` method patched on to the `kw` constructor.
 
 ####maybe someday@hellip;
 + attribute selectors? ( i.e., `kw('[attribute...]')')` ~ 7 flavors of attribute selector )
