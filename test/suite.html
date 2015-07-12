@@ -29,7 +29,7 @@
   k.constructor.prototype.assert = function (msg, fn) {
     var ok = this.element;
     (ok) && (typeof ok == 'object' && 'length' in ok && (ok = ok.length));
-    !!ok || (typeof fn == 'function' || (fn = console.log)) && fn('fail: ' + msg);
+    !!ok || fn && fn('fail: ' + msg) || console.log('fail: ' + msg);
     return this;
   };
   
