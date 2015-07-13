@@ -34,7 +34,7 @@ name attribute and tagName syntax requires special first characters:
 + tag: `kw.('=tagname')` returns nodes with matching nodeName or tagName
 
 ###Test suite
-"no frills" <a href="https://rawgit.com/dfkaye/kinwin.js/master/test/suite.html" 
+"no frills" <a href="https://rawgit.com/aliirz/kinwin.js/master/test/suite.html" 
   target="_blank" title="opens new tab">__html test suite__</a> 
 includes tiny `assert()` method patched on to the `kw` constructor.
 
