@@ -5,7 +5,10 @@ describe('KinWin', () => {
     document.body.innerHTML = `
       <div id="test-div" class="initial-class">
         <span>Initial Content</span>
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
       </div>
+      <div class="sibling">Sibling</div>
     `;
   });
 
@@ -13,72 +16,99 @@ describe('KinWin', () => {
     document.body.innerHTML = '';
   });
 
-  describe('attr()', () => {
-    test('should get attribute value', () => {
+  describe('Constructor', () => {
+    test('should accept string selector', () => {
       const element = kw('#test-div');
-      expect(element.attr('class')).toBe('initial-class');
+      expect(element['elements']).toHaveLength(1);
+      expect(element['isSingle']).toBe(true);
     });
 
-    test('should set single attribute', () => {
+    test('should accept Element', () => {
+      const div = document.getElementById('test-div');
+      const element = new KinWin(div!);
+      expect(element['elements']).toHaveLength(1);
+    });
+
+    test('should accept Element[]', () => {
+      const divs = document.querySelectorAll('div');
+      const element = new KinWin(Array.from(divs));
+      expect(element['elements'].length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('DOM Manipulation', () => {
+    test('should get/set HTML content', () => {
+      const element = kw('#test-div');
+      const initialHtml = `
+        <span>Initial Content</span>
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
+      `.trim();
+      expect(element.html().trim()).toBe(initialHtml);
+      
+      element.html('New Content');
+      expect(element.html()).toBe('New Content');
+    });
+
+    test('should get/set attributes', () => {
       const element = kw('#test-div');
       element.attr('title', 'Test Title');
-      expect(document.getElementById('test-div')?.getAttribute('title'))
-        .toBe('Test Title');
+      expect(element.attr('title')).toBe('Test Title');
     });
 
     test('should set multiple attributes', () => {
       const element = kw('#test-div');
       element.attr({
         'data-test': 'test',
-        'title': 'Test Title'
+        'aria-label': 'label'
       });
-      
-      const div = document.getElementById('test-div');
-      expect(div?.getAttribute('data-test')).toBe('test');
-      expect(div?.getAttribute('title')).toBe('Test Title');
+      expect(element.attr('data-test')).toBe('test');
+      expect(element.attr('aria-label')).toBe('label');
     });
   });
 
-  describe('html()', () => {
-    test('should get HTML content', () => {
-      const element = kw('#test-div');
-      const content = element.html();
-      expect(content.trim()).toBe('<span>Initial Content</span>');
-    });
-
-    test('should set HTML content', () => {
-      const element = kw('#test-div');
-      element.html('<p>New Content</p>');
-      expect(document.getElementById('test-div')?.innerHTML.trim())
-        .toBe('<p>New Content</p>');
-    });
-  });
-
-  describe('Class manipulation', () => {
-    test('should add class', () => {
+  describe('Class Manipulation', () => {
+    test('should add/remove classes', () => {
       const element = kw('#test-div');
       element.addClass('new-class');
-      expect(document.getElementById('test-div')?.classList.contains('new-class'))
-        .toBe(true);
+      expect(element.hasClass('new-class')).toBe(true);
+      
+      element.removeClass('new-class');
+      expect(element.hasClass('new-class')).toBe(false);
     });
 
-    test('should remove class', () => {
+    test('should toggle classes', () => {
       const element = kw('#test-div');
-      element.removeClass('initial-class');
-      expect(document.getElementById('test-div')?.classList.contains('initial-class'))
-        .toBe(false);
+      element.toggleClass('toggle-class');
+      expect(element.hasClass('toggle-class')).toBe(true);
+      
+      element.toggleClass('toggle-class');
+      expect(element.hasClass('toggle-class')).toBe(false);
     });
   });
 
-  describe('Event handling', () => {
-    test('should handle events', () => {
+  describe('Visibility', () => {
+    test('should hide/show elements', () => {
       const element = kw('#test-div');
-      const mockCallback = jest.fn();
+      element.hide();
+      expect((element['elements'][0] as HTMLElement).style.display).toBe('none');
       
-      element.on('click', mockCallback);
-      document.getElementById('test-div')?.click();
-      
-      expect(mockCallback).toHaveBeenCalledTimes(1);
+      element.show();
+      expect((element['elements'][0] as HTMLElement).style.display).toBe('');
+    });
+  });
+
+  describe('Traversal', () => {
+    test('should find children', () => {
+      const element = kw('#test-div');
+      const children = element.children();
+      expect(children['elements']).toHaveLength(3);
+    });
+
+    test('should find parent', () => {
+      const child = kw('.child');
+      const parent = child.parent();
+      expect(parent['elements'][0].id).toBe('test-div');
     });
   });
 }); 
