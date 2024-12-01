@@ -1,0 +1,325 @@
+/* Import Open Props for nice defaults */
+@import "https://unpkg.com/open-props";
+
+:root {
+  --primary: var(--indigo-6);
+  --primary-light: var(--indigo-4);
+  --primary-dark: var(--indigo-8);
+  --surface: var(--gray-0);
+  --surface-dark: var(--gray-1);
+  --text: var(--gray-9);
+  --text-light: var(--gray-7);
+  --radius: var(--radius-2);
+  --shadow: var(--shadow-2);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--surface);
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--size-4);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-7);
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--size-4);
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: var(--font-weight-5);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Hero Section */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--size-8);
+}
+
+#hero h1 {
+  font-size: var(--font-size-8);
+  font-weight: var(--font-weight-9);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--size-3);
+}
+
+.install-box {
+  margin-top: var(--size-4);
+  background: var(--surface-dark);
+  padding: var(--size-3);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+}
+
+.copy-btn {
+  padding: var(--size-2) var(--size-3);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Demo Sections */
+.demo-section {
+  padding: var(--size-8) var(--size-4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-section h2 {
+  font-size: var(--font-size-5);
+  margin-bottom: var(--size-6);
+  color: var(--text);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-4);
+}
+
+.demo-code {
+  background: var(--gray-9);
+  padding: var(--size-4);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.demo-preview {
+  background: var(--surface-dark);
+  padding: var(--size-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* Interactive Elements */
+.demo-preview [class*="demo"] {
+  padding: var(--size-3);
+  margin: var(--size-2) 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.changed {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.highlight {
+  background: var(--yellow-3);
+}
+
+.active {
+  border-color: var(--primary) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Event Demo Styles */
+.event-demo {
+    display: block;
+    width: 100%;
+    padding: var(--size-3);
+    margin-bottom: var(--size-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.event-demo-list {
+    margin: var(--size-4) 0;
+}
+
+.list-item {
+    padding: var(--size-2);
+    margin: var(--size-2) 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.list-item.selected {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.event-demo-input {
+    margin-top: var(--size-4);
+}
+
+.event-demo-input input {
+    width: 100%;
+    padding: var(--size-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: var(--size-2);
+}
+
+.input-display {
+    padding: var(--size-2);
+    min-height: var(--size-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+/* HTTP Demo Styles */
+.http-demo-btn {
+    display: block;
+    width: 100%;
+    padding: var(--size-3);
+    margin-bottom: var(--size-3);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.http-demo-btn:hover {
+    background: var(--primary-dark);
+}
+
+.result-box {
+    padding: var(--size-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: var(--size-4);
+    min-height: var(--size-8);
+    white-space: pre-wrap;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-2);
+}
+
+/* Form Demo Styles */
+.demo-form {
+    margin-bottom: var(--size-4);
+}
+
+.form-group {
+    margin-bottom: var(--size-3);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--size-2);
+    color: var(--text);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--size-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: var(--size-9);
+    resize: vertical;
+}
+
+/* Animation Demo Styles */
+.animation-group {
+    margin-bottom: var(--size-6);
+}
+
+.anim-btn {
+    display: block;
+    width: 100%;
+    padding: var(--size-3);
+    margin-bottom: var(--size-3);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.anim-btn:hover {
+    background: var(--primary-dark);
+}
+
+.anim-target {
+    padding: var(--size-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+/* Animation states */
+.fade-out {
+    opacity: 0;
+}
+
+.slide-out {
+    transform: translateX(-100%);
+} 
