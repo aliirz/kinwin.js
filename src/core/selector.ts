@@ -1,6 +1,6 @@
 type SelectorType = '#' | '.' | '@' | '=' | '';
 
-interface SelectorResult {
+export interface SelectorResult {
   elements: Element[];
   single: boolean;
 }

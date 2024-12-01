@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1733043567862" clover="3.2.0">
-  <project timestamp="1733043567862" name="All files">
+<coverage generated="1733044163771" clover="3.2.0">
+  <project timestamp="1733044163771" name="All files">
     <metrics statements="40" coveredstatements="40" conditionals="16" coveredconditionals="13" methods="14" coveredmethods="14" elements="70" coveredelements="67" complexity="0" loc="40" ncloc="40" packages="1" files="2" classes="2"/>
     <file name="manipulator.ts" path="/Users/aliraza/projects/kinwin.js/src/core/manipulator.ts">
       <metrics statements="28" coveredstatements="28" conditionals="10" coveredconditionals="8" methods="13" coveredmethods="13"/>
