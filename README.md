@@ -1,4 +1,6 @@
 # KinWin
+[![CI](https://github.com/aliirz/kinwin.js/actions/workflows/ci.yml/badge.svg)](https://github.com/aliirz/kinwin.js/actions/workflows/ci.yml)
+
 ## A minimalist DOM manipulation library.
 
 ### Usage

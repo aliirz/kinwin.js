@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinWin - Lightweight DOM Manipulation</title>
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#examples">Examples</a>
+            <a href="#docs">Documentation</a>
+            <a href="https://github.com/aliirz/kinwin.js">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Quick Start -->
+        <section id="quick-start">
+            <h1>KinWin.js</h1>
+            <p>Lightweight TypeScript DOM manipulation library</p>
+            
+            <pre><code class="language-bash">npm install kinwin</code></pre>
+        </section>
+
+        <!-- Core Examples -->
+        <section id="examples">
+            <h2>Examples</h2>
+
+            <!-- Selectors -->
+            <div class="example">
+                <h3>Selectors</h3>
+                <pre><code class="language-typescript">
+// ID selector
+kw('#myId')
+
+// Class selector
+kw('.myClass')
+
+// Name attribute selector
+kw('@inputName')
+
+// Tag selector
+kw('=div')</code></pre>
+            </div>
+
+            <!-- DOM Manipulation -->
+            <div class="example">
+                <h3>DOM Manipulation</h3>
+                <pre><code class="language-typescript">
+const element = kw('#demo');
+
+// Get/Set HTML
+element.html()                    // get
+element.html('New content')       // set
+
+// Attributes
+element.attr('title')             // get
+element.attr('title', 'Hello')    // set
+element.attr({                    // multiple
+    id: 'new-id',
+    class: 'active'
+})
+
+// Classes
+element.addClass('active')
+element.removeClass('disabled')</code></pre>
+            </div>
+
+            <!-- Event Handling -->
+            <div class="example">
+                <h3>Event Handling</h3>
+                <pre><code class="language-typescript">
+kw('#myButton').on('click', (e) => {
+    console.log('Clicked!', e);
+});
+
+// Method chaining
+kw('.item')
+    .addClass('active')
+    .attr('title', 'Active Item')
+    .on('click', (e) => {
+        e.target.classList.toggle('clicked');
+    });</code></pre>
+            </div>
+
+            <!-- Live Demo -->
+            <div class="example">
+                <h3>Live Demo</h3>
+                <div class="demo-area">
+                    <button id="demo-button">Click Me</button>
+                    <div id="demo-output">Click the button to see KinWin in action</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Load scripts in correct order -->
+    <script src="https://unpkg.com/prismjs@1.29.0/prism.js"></script>
+    <!-- Change the path to point to the correct location of kinwin.js -->
+    <script src="./dist/kinwin.min.js"></script>
+    <script src="./js/demo.js"></script>
+</body>
+</html> 
