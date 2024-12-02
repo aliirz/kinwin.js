@@ -1,6 +1,4 @@
 import { Selector } from './selector';
-import { Animation } from './animation';
-import { Http } from './http';
 
 /**
  * Main KinWin class for DOM manipulation
@@ -22,9 +20,7 @@ export class KinWin {
       this.elements = elements;
       this.isSingle = single;
     } else {
-      this.elements = Array.isArray(selectorOrElements) 
-        ? selectorOrElements 
-        : [selectorOrElements];
+      this.elements = Array.isArray(selectorOrElements) ? selectorOrElements : [selectorOrElements];
       this.isSingle = !Array.isArray(selectorOrElements);
     }
   }
@@ -49,7 +45,7 @@ export class KinWin {
       return this.elements[0]?.getAttribute(name) ?? null;
     }
 
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       if (typeof name === 'string') {
         element.setAttribute(name, value!);
       } else {
@@ -70,7 +66,7 @@ export class KinWin {
       return this.elements[0]?.innerHTML ?? '';
     }
 
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       element.innerHTML = content;
     });
 
@@ -79,14 +75,14 @@ export class KinWin {
 
   // Modern class manipulation
   addClass(className: string): this {
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       element.classList.add(className);
     });
     return this;
   }
 
   removeClass(className: string): this {
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       element.classList.remove(className);
     });
     return this;
@@ -97,7 +93,7 @@ export class KinWin {
     event: K,
     handler: (event: HTMLElementEventMap[K]) => void
   ): this {
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       element.addEventListener(event, handler as EventListener);
     });
     return this;
@@ -105,14 +101,14 @@ export class KinWin {
 
   // Find children
   children(): KinWin {
-    const elements = this.elements.flatMap(el => Array.from(el.children));
+    const elements = this.elements.flatMap((el) => Array.from(el.children));
     return new KinWin(elements);
   }
 
   // Find parent
   parent(): KinWin {
     const elements = this.elements
-      .map(el => el.parentElement)
+      .map((el) => el.parentElement)
       .filter((el): el is HTMLElement => el !== null)
       .filter(Boolean);
     return new KinWin(elements);
@@ -120,28 +116,29 @@ export class KinWin {
 
   // Find siblings
   siblings(): KinWin {
-    const elements = this.elements.flatMap(el => 
-      Array.from(el.parentElement?.children || [])
-        .filter(sibling => sibling !== el)
-    ).filter(Boolean);
+    const elements = this.elements
+      .flatMap((el) =>
+        Array.from(el.parentElement?.children || []).filter((sibling) => sibling !== el)
+      )
+      .filter(Boolean);
     return new KinWin(elements);
   }
 
   // Find closest ancestor matching selector
   closest(selector: string): KinWin {
     const elements = this.elements
-      .map(el => el.closest(selector))
+      .map((el) => el.closest(selector))
       .filter((el): el is HTMLElement => el !== null);
     return new KinWin(elements);
   }
 
   toggleClass(className: string): this {
-    this.elements.forEach(el => el.classList.toggle(className));
+    this.elements.forEach((el) => el.classList.toggle(className));
     return this;
   }
 
   hasClass(className: string): boolean {
-    return this.elements.some(el => el.classList.contains(className));
+    return this.elements.some((el) => el.classList.contains(className));
   }
 
   /**
@@ -153,7 +150,7 @@ export class KinWin {
    * ```
    */
   hide(): this {
-    this.elements.forEach(el => {
+    this.elements.forEach((el) => {
       (el as HTMLElement).style.display = 'none';
     });
     return this;
@@ -168,14 +165,14 @@ export class KinWin {
    * ```
    */
   show(): this {
-    this.elements.forEach(el => {
+    this.elements.forEach((el) => {
       (el as HTMLElement).style.display = '';
     });
     return this;
   }
 
   delegate(eventType: string, selector: string, handler: (event: Event) => void): this {
-    this.elements.forEach(el => {
+    this.elements.forEach((el) => {
       el.addEventListener(eventType, (e) => {
         const target = e.target as Element;
         if (target.matches(selector)) {
@@ -188,4 +185,4 @@ export class KinWin {
 }
 
 // Factory function
-export const kw = (selector: string | Element | Element[]): KinWin => new KinWin(selector); 
+export const kw = (selector: string | Element | Element[]): KinWin => new KinWin(selector);

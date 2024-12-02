@@ -21,7 +21,7 @@ export class Selector {
     '.': 'getElementsByClassName',
     '@': 'getElementsByName',
     '=': 'getElementsByTagName',
-    '': 'querySelectorAll'
+    '': 'querySelectorAll',
   };
 
   /**
@@ -40,7 +40,7 @@ export class Selector {
     const type = selector[0] as SelectorType;
     const value = selector.slice(1);
     const method = this.SELECTOR_TYPES[type] || this.SELECTOR_TYPES[''];
-    
+
     let elements: Element[];
     const single = type === '#';
 
@@ -48,10 +48,17 @@ export class Selector {
       const element = document[method](value) as HTMLElement;
       elements = element ? [element] : [];
     } else {
-      const collection = (document as any)[method](value);
-      elements = Array.from(collection);
+      type DocumentMethod = (selector: string) => HTMLCollection | NodeList | Element | null;
+      const collection = (document as Document & Record<string, DocumentMethod>)[method](value);
+      if (collection) {
+        elements = Array.from(collection as HTMLCollection | NodeList).filter(
+          (node): node is Element => node instanceof Element
+        );
+      } else {
+        elements = [];
+      }
     }
 
     return { elements, single };
   }
-} 
+}
