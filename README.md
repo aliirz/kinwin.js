@@ -1,97 +1,149 @@
 # KinWin
 [![CI](https://github.com/aliirz/kinwin.js/actions/workflows/ci.yml/badge.svg)](https://github.com/aliirz/kinwin.js/actions/workflows/ci.yml)
 
-## A minimalist DOM manipulation library.
+A minimalist DOM manipulation library with TypeScript support.
 
-### Usage
+## Installation
 
-Just include kinwin.js inside your webpage like this:
-
-`<script type="text/javascript" src="dist/kinwin.js"></script>`
-
-All methods can be accessed using the `kw` operator like this:
-
-`kw('.someClass').hide();`
-
-### Available methods:
-
-1. get
-2. set
-3. html
-4. css
-5. show
-6. hide
-7. append
-8. prepend
-9. remove
-
-### Selectors
-
-id and class syntax same as DOM API:
-+ id: `kw('#id-attribute')` returns node with matching id attribute value
-+ class: `kw('.class-attribute')` returns nodes with matching class attribute value
-
-name attribute and tagName syntax requires special first characters:
-+ name: `kw('@name-attribute')` returns nodes with matching name attribute value
-+ tag: `kw('=tagname')` returns nodes with matching nodeName or tagName
-
-### Test suite
-"no frills" <a href="https://rawgit.com/aliirz/kinwin.js/master/test/suite.html" 
-  target="_blank" title="opens new tab">__html test suite__</a> 
-includes tiny `assert()` method patched on to the `kw` constructor.
-
-#### Maybe someday&hellip;
-+ attribute selectors? ( i.e., `kw('[attribute...]')')` ~ 7 flavors of attribute selector )
-+ contextual selectors? ( i.e., `kw('thing').select('descendant-of-things')` )
-+ pseudo-element &amp; pseudo-class
-+ xpath or textContent or nodeValue selectors ( extra credit )
-
----
-
-## TypeScript Version (1.0.0)
-
-### NPM Installation
 ```bash
 npm install kinwin
 ```
 
-### TypeScript Usage Examples
+> Note: Package will be available on npm soon. For now, you can install directly from GitHub:
+> ```bash
+> npm install github:aliirz/kinwin.js
+> ```
+
+## Usage
+
+### TypeScript
 ```typescript
-// Modern selector usage
-const element = kw('#myId');
-const elements = kw('.myClass');
-const inputs = kw('@inputName');
-const divs = kw('=div');
-// Type-safe attribute handling
-element.attr('title'); // get
-element.attr('title', 'New Title'); // set
-element.attr({ id: 'new', title: 'New Title' });
-// HTML manipulation
-const content = element.html(); // get
-element.html('<p>New Content</p>'); // set
-// Class manipulation
-element.addClass('active');
-element.removeClass('disabled');
-// Type-safe event handling
-element.on('click', (e) => {
-console.log('Clicked!', e.clientX, e.clientY);
+import { kw, Http } from 'kinwin';
+
+// DOM Manipulation
+const element = kw('#myId')
+  .addClass('active')
+  .attr('title', 'Active Element')
+  .html('New Content');
+
+// Event Handling
+kw('.button').on('click', (e: Event) => {
+  console.log('Clicked!', e.target);
+});
+
+// Form Handling
+const form = kw('#myForm');
+form.on('submit', async (e: Event) => {
+  e.preventDefault();
+  const data = form.serialize();
+  
+  // HTTP Requests
+  try {
+    const response = await Http.post('/api/submit', data);
+    console.log('Success:', response);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+});
+
+// Animations
+await kw('.modal')
+  .fadeIn(300)
+  .addClass('visible');
+
+// Event Delegation
+kw('#list').delegate('click', '.item', (e: Event) => {
+  kw(e.target as Element).toggleClass('selected');
 });
 ```
 
+### JavaScript
+```javascript
+// DOM Manipulation
+const element = kw('#myId')
+  .addClass('active')
+  .attr('title', 'Active Element')
+  .html('New Content');
 
-### Development
+// Event Handling
+kw('.button').on('click', (e) => {
+  console.log('Clicked!', e.target);
+});
 
-```bash
-# Install dependencies
-npm install
-# Run tests
-npm test
-# Build
-npm run build
+// Form Handling
+const form = kw('#myForm');
+form.on('submit', async (e) => {
+  e.preventDefault();
+  const data = form.serialize();
+  
+  // HTTP Requests
+  try {
+    const response = await Http.post('/api/submit', data);
+    console.log('Success:', response);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+});
+
+// Animations
+kw('.modal')
+  .fadeIn(300)
+  .addClass('visible')
+  .then(() => console.log('Animation complete'));
+
+// Event Delegation
+kw('#list').delegate('click', '.item', (e) => {
+  kw(e.target).toggleClass('selected');
+});
 ```
 
-### Browser Support
-Supports all modern browsers (Chrome, Firefox, Safari, Edge)
+### Selectors
+KinWin supports multiple selector types:
+- ID: `kw('#id-attribute')` - select by ID
+- Class: `kw('.class-attribute')` - select by class
+- Name: `kw('@name-attribute')` - select by name attribute
+- Tag: `kw('=tagname')` - select by tag name
+
+### Available Methods
+
+#### DOM Manipulation
+- `html()` - Get/set HTML content
+- `attr()` - Get/set attributes
+- `val()` - Get/set form values
+- `show()` - Show elements
+- `hide()` - Hide elements
+- `append()` - Append content
+- `prepend()` - Prepend content
+- `remove()` - Remove elements
+
+#### Class Manipulation
+- `addClass()` - Add classes
+- `removeClass()` - Remove classes
+- `toggleClass()` - Toggle classes
+- `hasClass()` - Check class existence
+
+#### Events
+- `on()` - Add event listener
+- `delegate()` - Event delegation
+- `off()` - Remove event listener
+
+#### Forms
+- `serialize()` - Serialize form data
+- `val()` - Get/set form values
+
+#### HTTP (via Http utility)
+- `Http.get()` - GET request
+- `Http.post()` - POST request
+- `Http.put()` - PUT request
+- `Http.delete()` - DELETE request
+
+#### Animations
+- `fadeIn()` - Fade in
+- `fadeOut()` - Fade out
+- `slideIn()` - Slide in
+
+## Browser Support
+KinWin supports all modern browsers (Chrome, Firefox, Safari, Edge).
 
 ## License
-MIT © Ali Raza
+MIT
