@@ -43,6 +43,12 @@ nav {
   backdrop-filter: blur(8px);
 }
 
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .logo {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
@@ -63,6 +69,18 @@ nav {
 
 .nav-links a:hover {
   color: var(--primary);
+}
+
+.author-link {
+    color: #666;
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-top: -5px;
+}
+
+.author-link:hover {
+    color: var(--primary);
 }
 
 /* Hero Section */
