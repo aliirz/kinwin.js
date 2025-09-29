@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinWin - Modern Minimalist DOM Library</title>
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">KinWin</div>
+            <a href="https://aliirz.com" target="_blank" class="author-link">by @aliirz</a>
+        </div>
+        <div class="nav-links">
+            <a href="#selectors">Selectors</a>
+            <a href="#dom">DOM</a>
+            <a href="#events">Events</a>
+            <a href="#animation">Animation</a>
+            <a href="#forms">Forms</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <h1>KinWin.js</h1>
+        <p>Modern TypeScript DOM Manipulation Library</p>
+        <div class="install-box">
+            <code>npm install kinwin</code>
+            <button class="copy-btn" data-clipboard-text="npm install kinwin">Copy</button>
+        </div>
+    </section>
+
+    <section id="selectors" class="demo-section">
+        <h2>Selectors</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// ID selector
+kw('#myId')
+
+// Class selector
+kw('.myClass')
+
+// Name selector
+kw('@inputName')
+
+// Tag selector
+kw('=div')
+                </code></pre>
+            </div>
+            <div class="demo-preview">
+                <div id="myId">ID Element</div>
+                <div class="myClass">Class Element</div>
+                <input name="inputName" value="Name Element">
+                <div class="tag-element">Tag Element</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dom" class="demo-section">
+        <h2>DOM Manipulation</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// HTML content
+kw('#content').html('New content')
+
+// Attributes
+kw('#attr-demo')
+.attr('title', 'Hello')
+.attr({
+    'data-type': 'demo',
+    'aria-label': 'Example'
+})
+
+// Classes
+kw('.class-demo')
+    .addClass('active')
+    .removeClass('inactive')
+    .toggleClass('highlight')
+                </code></pre>
+            </div>
+            <div class="demo-preview">
+                <div id="content">Click to change content</div>
+                <div id="attr-demo">Hover to see attributes</div>
+                <div class="class-demo">Click to toggle classes</div>
+            </div>
+        </div>
+    </section>
+    <section id="events" class="demo-section">
+        <h2>Events</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// Basic event handling
+kw('#click-demo').on('click', (e) => {
+    e.target.classList.toggle('active');
+});
+
+// Event delegation
+kw('#list-demo').delegate('click', '.list-item', (e) => {
+    // Handle clicks on any .list-item, even new ones
+    kw(e.target).toggleClass('selected');
+});
+
+// Form events
+kw('#event-input').on('input', (e) => {
+    kw('#input-value').html(e.target.value);
+});
+                </code></pre>
+            </div>
+            <div class="demo-preview">
+                <button id="click-demo" class="event-demo">Click me to toggle active state</button>
+                
+                <div id="list-demo" class="event-demo-list">
+                    <div class="list-item">List Item 1</div>
+                    <div class="list-item">List Item 2</div>
+                    <div class="list-item">List Item 3</div>
+                    <button id="add-item">Add Item</button>
+                </div>
+
+                <div class="event-demo-input">
+                    <input id="event-input" type="text" placeholder="Type something...">
+                    <div id="input-value" class="input-display"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="http" class="demo-section">
+        <h2>HTTP Requests</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// GET request
+kw('#get-demo').on('click', async () => {
+    const data = await Http.get('https://jsonplaceholder.typicode.com/posts/1');
+    kw('#get-result').html(JSON.stringify(data, null, 2));
+});
+
+// POST request
+kw('#post-demo').on('click', async () => {
+    const data = await Http.post('https://jsonplaceholder.typicode.com/posts', {
+        title: 'KinWin Demo',
+        body: 'This is a test post',
+        userId: 1
+    });
+    kw('#post-result').html(JSON.stringify(data, null, 2));
+});</code></pre>
+            </div>
+            <div class="demo-preview">
+                <button id="get-demo" class="http-demo-btn">Make GET Request</button>
+                <pre id="get-result" class="result-box"></pre>
+
+                <button id="post-demo" class="http-demo-btn">Make POST Request</button>
+                <pre id="post-result" class="result-box"></pre>
+            </div>
+        </div>
+    </section>
+    <section id="forms" class="demo-section">
+        <h2>Form Handling</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// Form serialization
+kw('#demo-form').on('submit', (e) => {
+    e.preventDefault();
+    const data = kw('#demo-form').serialize();
+    kw('#form-result').html(JSON.stringify(data, null, 2));
+});
+
+// Form value handling
+kw('#demo-input').on('input', (e) => {
+    const value = kw('#demo-input').val();
+    kw('#input-result').html(`Current value: ${value}`);
+});</code></pre>
+            </div>
+            <div class="demo-preview">
+                <form id="demo-form" class="demo-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit">Submit Form</button>
+                </form>
+                <pre id="form-result" class="result-box"></pre>
+
+                <div class="form-group">
+                    <label for="demo-input">Live Value Demo:</label>
+                    <input type="text" id="demo-input" placeholder="Type something...">
+                    <div id="input-result" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="animation" class="demo-section">
+        <h2>Animations</h2>
+        <div class="demo-grid">
+            <div class="demo-code">
+                <pre><code class="language-typescript">
+// Fade animations
+kw('#fade-demo').fadeOut(300)  // fade out in 300ms
+    .fadeIn(300);              // fade in in 300ms
+
+// Slide animations
+kw('#slide-demo').slideIn(500);  // slide in from left
+
+// Chain animations
+kw('#chain-demo')
+    .fadeOut(300)
+    .fadeIn(300)
+    .slideIn(500);</code></pre>
+            </div>
+            <div class="demo-preview">
+                <div class="animation-group">
+                    <button id="fade-trigger" class="anim-btn">Trigger Fade</button>
+                    <div id="fade-demo" class="anim-target">
+                        Fade In/Out Demo
+                    </div>
+                </div>
+
+                <div class="animation-group">
+                    <button id="slide-trigger" class="anim-btn">Trigger Slide</button>
+                    <div id="slide-demo" class="anim-target">
+                        Slide Demo
+                    </div>
+                </div>
+
+                <div class="animation-group">
+                    <button id="chain-trigger" class="anim-btn">Trigger Chain</button>
+                    <div id="chain-demo" class="anim-target">
+                        Chain Animation Demo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/prismjs@1.29.0/prism.js"></script>
+    <script src="./dist/kinwin.min.js"></script>
+    <script src="js/demo.js"></script>
+</body>
+</html> 
